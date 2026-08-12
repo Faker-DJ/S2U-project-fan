@@ -15,7 +15,7 @@ import "./styles/responsive.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/S2U-project-fan">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>
