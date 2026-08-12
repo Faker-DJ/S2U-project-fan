@@ -1,0 +1,123 @@
+/* ---------------------------------------------------------------------- */
+/* RESPONSIVE / ANDROID POLISH                                            */
+/* Imported LAST in main.jsx on purpose: every rule in this file targets  */
+/* selectors that are already defined (unconditionally) in an earlier     */
+/* stylesheet, so it must win the cascade regardless of source order      */
+/* elsewhere. Keeping every cross-file mobile fix in one place also makes */
+/* it easy to see the whole small-screen picture at a glance.             */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  /* Desktop-scale vertical rhythm (8–9rem top/bottom padding) reads as a
+     huge, awkward gap on a small phone — tighten it everywhere. */
+  .about-page,
+  .gallery-page,
+  .member-detail {
+    padding: 6.5rem 0 4rem;
+  }
+
+  .music-page {
+    padding: 6.5rem 0 7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Member detail: single-column facts, smaller portrait radius, and a
+     little breathing room so the page doesn't feel cramped edge-to-edge. */
+  .member-detail-portrait {
+    border-radius: var(--radius-md);
+  }
+
+  .member-quote {
+    font-size: 1.25rem;
+    margin: 1.6rem 0;
+  }
+
+  .member-story {
+    padding: 1.4rem 1.5rem;
+  }
+}
+
+/* About page — Android/mobile polish. The timeline previously sat flush
+   against the left edge of the screen (dot + line + text all hugging the
+   container's left padding with a lot of dead space on the right), which
+   read as unbalanced on a phone. Give it a proper centered card treatment
+   instead, and turn the plain info blocks into a nicer, more "alive" grid. */
+@media (max-width: 768px) {
+  .about-hero-text p {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .about-info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1.4rem;
+  }
+
+  .timeline {
+    max-width: 420px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .timeline-item {
+    gap: 1rem;
+    padding-bottom: 1.7rem;
+  }
+
+  .timeline-content {
+    padding: 0.7rem 0.9rem;
+    background: rgba(216, 240, 255, 0.4);
+  }
+
+  .timeline-content h4 {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+  }
+
+  .timeline-content p {
+    font-size: 1.15rem;
+  }
+
+  .official-links-grid {
+    justify-content: center;
+  }
+
+  .official-link {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .about-info-item {
+    padding: 1.3rem 1.2rem;
+  }
+
+  .about-info-icon {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 400px) {
+  .member-secondary-grid {
+    gap: 0.4rem;
+  }
+
+  .lightbox-caption {
+    font-size: 0.68rem;
+    bottom: 1.2rem;
+  }
+
+  .lightbox img {
+    max-width: 92vw;
+  }
+}

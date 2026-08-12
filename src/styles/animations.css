@@ -1,0 +1,121 @@
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--gradient-hero);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
+.loading-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.loading-logo-fallback {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  letter-spacing: 0.12em;
+  color: var(--color-charcoal);
+}
+
+.loading-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-charcoal-soft);
+}
+
+.loading-percent {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--color-charcoal);
+}
+
+.loading-bar-track {
+  width: 220px;
+  height: 1px;
+  background: rgba(36, 31, 61, 0.18);
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: var(--color-sky-deep);
+}
+
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--color-charcoal);
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: width var(--dur-fast) var(--ease-premium), height var(--dur-fast) var(--ease-premium),
+    background var(--dur-fast), border-color var(--dur-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hover-view {
+  width: 68px;
+  height: 68px;
+  background: rgba(255, 255, 255, 0.85);
+  border-color: transparent;
+}
+
+.custom-cursor.hover-link {
+  width: 34px;
+  height: 34px;
+  background: var(--color-charcoal);
+  border-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+/* Shared keyframes */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.floaty {
+  animation: floatY 6s ease-in-out infinite;
+}

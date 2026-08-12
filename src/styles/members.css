@@ -1,0 +1,544 @@
+.members-section {
+  padding: 8rem 0 6rem;
+}
+
+.members-section-hint {
+  margin: -1.6rem 0 2.4rem;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 640px) {
+  .members-section {
+    padding: 6.5rem 0 3.5rem;
+  }
+  .members-section-hint {
+    margin: -1.2rem 0 1.8rem;
+    font-size: 0.82rem;
+  }
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+}
+
+.member-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-silver);
+  cursor: pointer;
+}
+
+.member-card-trigger {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+
+.member-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-premium);
+  will-change: transform;
+}
+
+.member-card:hover .member-card-img {
+  transform: scale(1.08);
+}
+
+.member-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(36, 31, 61, 0) 40%, rgba(36, 31, 61, 0.86) 100%);
+  opacity: 0.55;
+  transition: opacity var(--dur-fast) var(--ease-premium);
+}
+
+.member-card:hover .member-card-overlay {
+  opacity: 0.9;
+}
+
+.member-card-number {
+  position: absolute;
+  top: 1.1rem;
+  left: 1.2rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-text-on-dark);
+  letter-spacing: 0.05em;
+}
+
+.member-card-info {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  color: var(--color-text-on-dark);
+}
+
+.member-card-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.02em;
+}
+
+.member-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--dur-fast) var(--ease-premium), transform var(--dur-fast) var(--ease-premium);
+}
+
+.member-card:hover .member-card-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 992px) {
+  .member-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .member-card-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .member-card-overlay {
+    opacity: 0.85;
+  }
+}
+
+@media (max-width: 480px) {
+  .member-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Featured member scroll showcase */
+.featured-member {
+  position: relative;
+  /* Same dvh fix as .hero — prevents the section from being clipped or
+     leaving a blank gap on Android/iOS as the browser chrome resizes. */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-on-dark);
+  overflow: hidden;
+}
+
+.featured-member-bg-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.featured-member-bg-wrap {
+  position: absolute;
+  inset: -12% 0;
+  will-change: transform;
+}
+
+/* "Living photo" motion — three organic, non-symmetric drift paths so each
+   member's portrait breathes on its own instead of a mechanical zoom in/out.
+   Cycled per member (see Home.jsx) with varied duration + a negative delay
+   so sections never appear perfectly synced with one another. */
+@keyframes featuredKenBurns1 {
+  0% { transform: scale(1.06) translate(0%, 0%) rotate(0deg); }
+  30% { transform: scale(1.19) translate(-3.6%, -2.2%) rotate(-0.6deg); }
+  65% { transform: scale(1.26) translate(-1.4%, 2.6%) rotate(0.35deg); }
+  100% { transform: scale(1.06) translate(0%, 0%) rotate(0deg); }
+}
+
+@keyframes featuredKenBurns2 {
+  0% { transform: scale(1.1) translate(0%, 0%) rotate(0deg); }
+  35% { transform: scale(1.24) translate(4%, 2.4%) rotate(0.55deg); }
+  70% { transform: scale(1.16) translate(1.8%, -3%) rotate(-0.4deg); }
+  100% { transform: scale(1.1) translate(0%, 0%) rotate(0deg); }
+}
+
+@keyframes featuredKenBurns3 {
+  0% { transform: scale(1.04) translate(0%, 0%) rotate(0deg); }
+  40% { transform: scale(1.22) translate(-2.8%, 3%) rotate(0.5deg); }
+  75% { transform: scale(1.28) translate(3.4%, 0.6%) rotate(-0.55deg); }
+  100% { transform: scale(1.04) translate(0%, 0%) rotate(0deg); }
+}
+
+.featured-member-bg-kenburns {
+  position: absolute;
+  inset: 0;
+  animation-name: featuredKenBurns1;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.featured-member-bg-kenburns.kb-variant-1 { animation-name: featuredKenBurns1; }
+.featured-member-bg-kenburns.kb-variant-2 { animation-name: featuredKenBurns2; }
+.featured-member-bg-kenburns.kb-variant-3 { animation-name: featuredKenBurns3; }
+
+.featured-member-bg {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Soft diagonal light sweep — a subtle glint drifting across the portrait
+   on a slow loop, layered on top of the Ken Burns drift for an extra touch
+   of "alive" premium sheen, like light catching a photograph. */
+.featured-member-sweep {
+  position: absolute;
+  top: -20%;
+  left: -60%;
+  width: 45%;
+  height: 140%;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.16) 48%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation-name: featuredSweep;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes featuredSweep {
+  0% { transform: translateX(0%) rotate(8deg); opacity: 0; }
+  8% { opacity: 1; }
+  45% { transform: translateX(220%) rotate(8deg); opacity: 0.9; }
+  55% { opacity: 0; }
+  100% { transform: translateX(220%) rotate(8deg); opacity: 0; }
+}
+
+/* Slow-shifting color wash — an extra "alive" layer independent of the
+   photo's own drift, so the section still visibly breathes even in the
+   first second or two before the Ken Burns motion has traveled far.
+   Rendered as a real element *after* the photo + sweep in the DOM so it
+   always paints on top of them without needing z-index juggling. */
+.featured-member-gradient-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background: linear-gradient(
+    120deg,
+    rgba(124, 200, 251, 0.4),
+    rgba(201, 182, 247, 0.32),
+    rgba(255, 126, 185, 0.4)
+  );
+  background-size: 260% 260%;
+  animation: featuredGradientDrift 14s ease-in-out infinite;
+}
+
+@keyframes featuredGradientDrift {
+  0% { background-position: 0% 30%; }
+  50% { background-position: 100% 70%; }
+  100% { background-position: 0% 30%; }
+}
+
+.featured-member::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 45%, rgba(20, 16, 34, 0.55) 100%);
+}
+
+.featured-member-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(47, 162, 238, 0.28) 0%, rgba(36, 31, 61, 0.5) 100%);
+}
+
+.featured-member-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0 6vw;
+}
+
+.featured-member-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 6rem);
+  letter-spacing: 0.03em;
+  text-shadow: 0 4px 28px rgba(20, 16, 34, 0.35);
+}
+
+.featured-member-teaser {
+  max-width: 480px;
+  color: var(--color-text-on-dark-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Intentionally NOT disabled under prefers-reduced-motion — see the note in
+   global.css. The Discover living-photo drift is slow and subtle enough
+   (a few % of scale/translate over many seconds) that it doesn't trigger
+   motion sickness the way large parallax or flashing content would, and
+   it's a core, explicitly-requested part of this section's identity. */
+
+@media (max-width: 480px) {
+  .featured-member-content {
+    gap: 0.9rem;
+    padding: 0 7vw;
+  }
+  .featured-member-teaser {
+    font-size: 0.88rem;
+    max-width: 340px;
+  }
+}
+
+/* Member detail page */
+.member-detail {
+  padding: 9rem 0 6rem;
+}
+
+.member-detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  color: var(--color-text-muted);
+}
+
+.member-detail-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.member-detail-portrait {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+.member-detail-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-detail-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  margin-bottom: 1.6rem;
+}
+
+.member-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem 2rem;
+  margin: 2rem 0;
+}
+
+.member-fact-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.member-fact-value {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.member-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  margin: 2rem 0;
+  border-left: 2px solid var(--color-pink-deep);
+  padding-left: 1.2rem;
+}
+
+.member-description {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.member-story {
+  background: var(--gradient-dreamy);
+  border-radius: var(--radius-md);
+  padding: 1.8rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.member-story .eyebrow {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.member-story p {
+  line-height: 1.75;
+  color: var(--color-charcoal);
+}
+
+.member-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.4rem;
+}
+
+.member-favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-charcoal);
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+
+.member-favorite-btn.active {
+  background: var(--color-charcoal);
+  color: var(--color-text-on-dark);
+}
+
+.member-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.member-secondary-grid img {
+  border-radius: var(--radius-sm);
+  aspect-ratio: 1;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-premium);
+}
+
+.member-secondary-grid img:hover {
+  transform: scale(1.03);
+}
+
+.member-social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.member-social-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-right: 0.2rem;
+}
+
+.member-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-silver);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+
+.member-social a:hover {
+  background: var(--color-charcoal);
+  color: var(--color-text-on-dark);
+}
+
+.member-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(36, 31, 61, 0.1);
+}
+
+.member-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.member-nav-link.next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.member-nav-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.member-nav-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+}
+
+@media (max-width: 900px) {
+  .member-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .member-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .member-facts {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+  .member-secondary-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .member-nav {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .member-nav-link.next {
+    text-align: left;
+    align-items: flex-start;
+  }
+}

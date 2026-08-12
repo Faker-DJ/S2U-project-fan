@@ -1,0 +1,110 @@
+.hero {
+  position: relative;
+  /* 100vh on Android/iOS browsers includes the address bar and causes the
+     hero to be cut off or leave a gap as the UI shows/hides on scroll.
+     100dvh (dynamic viewport height) tracks the *actual* visible area —
+     falls back to 100vh automatically on browsers that don't support it. */
+  height: 100vh;
+  height: 100dvh;
+  min-height: 560px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-on-dark);
+  background: var(--gradient-hero);
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-overlay);
+  z-index: 1;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  filter: blur(0.5px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 0 5vw;
+}
+
+.hero-logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 0.6rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 10vw, 7.5rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.hero-subtitle {
+  font-size: 0.85rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-text-on-dark-muted);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-text-on-dark-muted);
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+}
+
+@media (max-width: 480px) {
+  .hero-logo {
+    height: 40px;
+  }
+}

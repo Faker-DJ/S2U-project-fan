@@ -1,0 +1,141 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.6rem 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--dur-med) var(--ease-premium), backdrop-filter var(--dur-med) var(--ease-premium),
+    border-color var(--dur-med) var(--ease-premium), padding var(--dur-med) var(--ease-premium);
+  border-bottom: 1px solid transparent;
+}
+
+.navbar.scrolled {
+  background: rgba(255, 250, 252, 0.72);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid rgba(36, 31, 61, 0.08);
+  padding: 1rem 6vw;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.navbar-logo img {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+}
+
+.navbar-links a {
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--dur-fast) var(--ease-premium);
+}
+
+.navbar-links a:hover::after,
+.navbar-links a.active::after {
+  width: 100%;
+}
+
+.navbar-burger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  z-index: 200;
+  /* Visual icon is small, but the tappable area meets the ~44px minimum
+     comfortable touch target on Android/iOS. */
+  width: 44px;
+  height: 44px;
+  margin: -10px -10px -10px 0;
+}
+
+.navbar-burger span {
+  width: 24px;
+  height: 1.5px;
+  background: var(--color-charcoal);
+  transition: transform var(--dur-fast), opacity var(--dur-fast);
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--color-charcoal);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem;
+  overflow-y: auto;
+  padding: 6rem 6vw 3rem;
+  /* Respect gesture-nav / notch safe areas on Android & iOS */
+  padding-top: calc(6rem + env(safe-area-inset-top));
+  padding-bottom: calc(3rem + env(safe-area-inset-bottom));
+}
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-text-on-dark);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1.2rem 5.5vw;
+  }
+  .navbar.scrolled {
+    padding: 0.85rem 5.5vw;
+  }
+  .navbar-links {
+    display: none;
+  }
+  .navbar-burger {
+    display: flex;
+  }
+}
+
+@media (max-width: 420px) {
+  .mobile-menu {
+    gap: 1.6rem;
+  }
+  .mobile-menu a {
+    font-size: 1.6rem;
+  }
+  .navbar-logo img {
+    height: 28px;
+  }
+}
